@@ -18,10 +18,11 @@ addons:
   apt:
     packages:
       - libomp-dev
+      - libgmp-dev
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install llvm libomp; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install llvm libomp gmp; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export PATH=/usr/local/opt/llvm/bin:$PATH; fi
 
 install:
