@@ -29,7 +29,7 @@ before_install:
 
 install:
   - pip install -r requirements.txt
-  - if [ "$USE_LIBOMP" = true ]; then pip setup.py install --omp else pip setup.py install; fi
+  - if [ "$USE_LIBOMP" = true ]; then pip setup.py install --omp; else pip setup.py install; fi
 
 script:
   - sh run_all_tests.sh
