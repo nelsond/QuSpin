@@ -29,7 +29,7 @@ addons:
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install llvm libomp gmp pyenv 2>/dev/null && true; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install llvm libomp gmp pyenv 2>/dev/null || true; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then pyenv install 3.7.0 && pyenv global 3.7.0; fi  
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export PATH=/usr/local/opt/llvm/bin:$PATH; fi
 
