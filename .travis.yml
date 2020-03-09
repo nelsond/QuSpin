@@ -1,12 +1,18 @@
 language: python
+python: 3.7
 
 jobs:
   include:
-    - name: "Python 3.7 on Xenial Linux"
-      python: 3.7
     - name: "Python 3.7 on mac OS"
       os: osx
       language: shell
+      env:
+        - USE_LIBOMP=true
+    - name: "Python 3.7 on mac OS"
+      os: osx
+      language: shell
+      env:
+        - USE_LIBOMP=false
 
 env:
   - USE_LIBOMP=true
@@ -23,7 +29,7 @@ addons:
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install llvm libomp gmp pyenv; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install llvm libomp gmp pyenv 2>/dev/null && true; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then pyenv install 3.7.0 && pyenv global 3.7.0; fi  
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export PATH=/usr/local/opt/llvm/bin:$PATH; fi
 
