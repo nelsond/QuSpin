@@ -22,12 +22,11 @@ addons:
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install llvm libomp; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; export PATH=/usr/local/opt/llvm/bin:$PATH; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export PATH=/usr/local/opt/llvm/bin:$PATH; fi
 
 install:
   - pip install -r requirements.txt
-  - if [ "$USE_LIBOMP" = true ]; pip setup.py install --omp; fi
-  - if [ "$USE_LIBOMP" = false ]; pip setup.py install; fi
+  - if [ "$USE_LIBOMP" = true ]; then pip setup.py install --omp else pip setup.py install; fi
 
 script:
   - sh run_all_tests.sh
