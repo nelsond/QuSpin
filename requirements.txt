@@ -5,3 +5,4 @@ joblib
 dill
 gmpy2 
 numba
+cython
