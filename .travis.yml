@@ -31,19 +31,14 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update ; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install llvm libomp gmp pyenv 2>/dev/null || true; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then pyenv install 3.7.0; fi  
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export PATH=/usr/local/opt/llvm/bin:$PATH; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export PYENV_VERSION=3.7.0; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export PATH="/Users/travis/.pyenv/shims:${PATH}"; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then which python; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then which python3; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then which pip; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then which pip3; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then python --version; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then python3 --version; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export PATH=/usr/local/opt/llvm/bin:$PATH; fi
 
 install:
   - pip3 install -r requirements.txt
   - if [ "$USE_LIBOMP" = true ]; then python3 setup.py install --omp; else python3 setup.py install; fi
 
 script:
-  - sh run_all_tests.sh
+  - source run_all_tests.sh
